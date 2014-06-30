@@ -60,6 +60,11 @@ def func():
                 else:
                     if data :
                         print (" received " , [data] , "from ",s.getpeername())
+                        for item in inputs:
+                            if item is server:
+                                pass
+                            else:
+                                item.send(data.encode())
 
 if __name__ == '__main__':
     func()
