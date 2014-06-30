@@ -22,7 +22,7 @@ while True:
     data = input("To server: ")
     if data:
         server.send(data.encode())
-        msg = server.recv(1024).decode()
-        print("from server: " + str(msg))
+        #msg = server.recv(1024).decode()
+        #print("from server: " + str(msg))
     else:
         print("Null message is not allowed!")
