@@ -15,10 +15,10 @@ server = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 server.connect(server_address)
 
 while True:
-    data = raw_input("To server: ")
+    data = input("To server: ")
     if data:
-        server.send(data)
-        msg = server.recv(1024)
+        server.send(data.encode())
+        msg = server.recv(1024).decode()
         print("from server: " + str(msg))
     else:
         print("Null message is not allowed!")

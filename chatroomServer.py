@@ -9,15 +9,15 @@ server.bind(server_address)
 server.listen(5)
 
 while True:
-    print 'System: server now is listening on port ' + str([port])
+    print('System: server now is listening on port ' + str([port]))
     connection, client_address = server.accept()
-    print 'System: ' + str(client_address) + ' is connected'
+    print('System: ' + str(client_address) + ' is connected')
 
     while True:
         try:
-            data = connection.recv(1024)
+            data = connection.recv(1024).decode()
             print('From client: ' + data)
-            connection.send(data)
+            connection.send(data.encode())
         except:
             print("System: client has quitted\n")
             break
