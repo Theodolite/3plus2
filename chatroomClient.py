@@ -2,6 +2,7 @@
 
 import socket
 import sys
+import threading
 
 version = sys.version[0]
 if version == '2':
@@ -18,11 +19,24 @@ except:
     print("error")
     input()
 
-while True:
-    data = input("To server: ")
-    if data:
-        server.send(data.encode())
-        #msg = server.recv(1024).decode()
-        #print("from server: " + str(msg))
-    else:
-        print("Null message is not allowed!")
+def func_send():
+    while True:
+        data = input("To server: ")
+        if data:
+            server.send(data.encode())
+            #msg = server.recv(1024).decode()
+            #print("from server: " + str(msg))
+        else:
+            print("Null message is not allowed!")
+
+def func_recv():
+    while True:
+        data = server.recv(1024).decode()
+        print("From server " + data)
+
+if __name__ == '__main__':
+    thread_send = threading.Thread(target = func_send)
+    thread_recv = threading.Thread(target = func_recv)
+
+    thread_send.start()
+    thread_recv.start()
